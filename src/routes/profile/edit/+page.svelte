@@ -43,7 +43,13 @@
 
    onMount(async () => {
       try {
-         const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/profiles`);
+         const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/profiles`, {
+            headers: {
+               'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+               'Access-Control-Allow-Origin': '*',
+               'Access-Control-Allow-Headers': '*',
+            }
+         });
 
          if (!response.ok) {
             console.error(

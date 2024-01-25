@@ -4,7 +4,13 @@
 
   export async function load() {
     try {
-      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/events`);
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/events`, {
+        headers: {
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': '*',
+        },
+      });
 
       if (!response.ok) {
         console.error('Error fetching events:', response.status, response.statusText);

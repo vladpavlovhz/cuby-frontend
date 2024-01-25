@@ -41,6 +41,9 @@
         const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/auth/login`, {
           method: 'POST',
           headers: {
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ 
