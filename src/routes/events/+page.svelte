@@ -3,13 +3,14 @@
   import TopNav from '$lib/components/TopNav.svelte';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
   import Cookies from 'js-cookie';
   let events = [];
   let searchQuery = '';
   onMount(async () => {
     try {
       const cubySession = Cookies.get('cubySession');
-      const response = await fetch('http://localhost:3011/events', {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/events`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,6 +3,7 @@
    import "../../../app.css";
    import "@fortawesome/fontawesome-free/js/all.js";
    import { onMount } from "svelte";
+   import { PUBLIC_VITE_API_BASE_URL } from "$env/static/public";
    let profilepicture = "../src/img/stokstraart.png";
    import Cookies from "js-cookie";
 
@@ -64,7 +65,7 @@
       try {
          const cubySession = Cookies.get("cubySession");
          const response = await fetch(
-            `http://localhost:3011/profiles/`,
+            `${PUBLIC_VITE_API_BASE_URL}/profiles/`,
             {
                method: "POST",
                headers: {

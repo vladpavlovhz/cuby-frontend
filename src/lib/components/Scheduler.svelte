@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import Calendar from './Calendar.svelte';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
   export let dateID;
   export let dateHeading;
   import Cookies from 'js-cookie';
@@ -27,7 +28,7 @@ const createCustomEvent = async () => {
 
       const cubySession = Cookies.get('cubySession');
       console.log(cubySession);
-      const response = await fetch(`http://localhost:3011/calendar/`, {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/calendar/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

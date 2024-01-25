@@ -2,6 +2,7 @@
   import '/src/app.css';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
   import Cookies from 'js-cookie';
 
   let username = '';
@@ -32,7 +33,7 @@
 
     if (!usernameError && !passwordError && !passwordMismatchError) {
       try {
-        const response = await fetch('http://localhost:3011/auth/register', {
+        const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

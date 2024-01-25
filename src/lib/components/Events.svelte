@@ -1,9 +1,10 @@
 <script>
+  import { PUBLIC_VITE_API_BASE_URL } from "$env/static/public";
   export let events = [];
 
   export async function load() {
     try {
-      const response = await fetch('http://localhost:3011/events');
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/events`);
 
       if (!response.ok) {
         console.error('Error fetching events:', response.status, response.statusText);

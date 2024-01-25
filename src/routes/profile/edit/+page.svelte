@@ -5,6 +5,7 @@
    import "@fortawesome/fontawesome-free/js/all.js";
    export let profiles = [];
    import { goto } from "$app/navigation";
+   import { PUBLIC_VITE_API_BASE_URL } from "$env/static/public";
    let id = 0;
    let profilepicture = "../src/img/stokstraart.png";
    let newName = "";
@@ -42,7 +43,7 @@
 
    onMount(async () => {
       try {
-         const response = await fetch("http://localhost:3011/profiles");
+         const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/profiles`);
 
          if (!response.ok) {
             console.error(
@@ -94,7 +95,7 @@
    async function sendToDataBase() {
       try {
          const response = await fetch(
-            `http://localhost:3011/profiles/${jsonData.id}`,
+            `${PUBLIC_VITE_API_BASE_URL}/profiles/${jsonData.id}`,
             {
                method: "PUT",
                headers: {

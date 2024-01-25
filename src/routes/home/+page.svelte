@@ -4,6 +4,7 @@
   import TopNav from '$lib/components/TopNav.svelte';
   import { onMount } from 'svelte';
   import Cookies from 'js-cookie';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
 
   let id = 0;
   let otherEvents = [];
@@ -18,7 +19,7 @@
   onMount(async () => {
     try {
       console.log('token', token);
-      const response = await fetch('http://localhost:3011/profiles', {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/profiles`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch('http://localhost:3011/events', {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/events`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +89,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch('http://localhost:3011/calendar', {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/calendar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

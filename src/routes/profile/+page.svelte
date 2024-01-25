@@ -6,12 +6,13 @@
    export let profiles = [];
    let id = 0;
    import Cookies from "js-cookie";
+   import { PUBLIC_VITE_API_BASE_URL } from "$env/static/public";
 
 
    onMount(async () => {
       try {
          const cubySession = Cookies.get("cubySession");
-         const response = await fetch("http://localhost:3011/profiles", {
+         const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/profiles`, {
             method: "POST",
             headers: {
                "Content-Type": "application/json",

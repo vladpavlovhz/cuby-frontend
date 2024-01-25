@@ -1,6 +1,8 @@
+<script>
   import { goto } from '$app/navigation';
   import TopNav from '$lib/components/TopNav.svelte';
   import NavBar from '$lib/components/NavBar.svelte';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
 
   export let data;
 
@@ -14,7 +16,7 @@
 
     if (joined) {
       try {
-        const response = await fetch(`http://localhost:3011/calendar/`, {
+        const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/calendar/`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -28,8 +30,13 @@
           joined = false;
           
         } else {
-
-  }
+          throw new Error(`Failed to delete event: ${response.statusText}`);
+        }
+      } catch (error) {
+        console.error('Error deleting event:', error);
+      }
+    }
+  };
 
   function limitDescription(description, maxSentences = 5) {
     // Split the description into an array of sentences
@@ -63,8 +70,11 @@
   {/if}
 </main>
 
-<button id="joinLeave" on:click={changeAttendance} class="bg-darkestBlue text-white w-full m-3 rounded-md p-2 text-xl font-bold">Join Event</button
+<button id="joinLeave" on:click={changeAttendance} class="bg-darkestBlue text-white w-full m-3 rounded-md p-2 text-xl font-bold">Join Event</button>
 
-<NavBar />
+  <footer>
+    <NavBar />
+  </footer>
+
 
 

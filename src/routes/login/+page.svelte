@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import axios from 'axios';
   import Cookies from 'js-cookie';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
 
   onMount(async () => {
     const loggedIn = window.localStorage.getItem('loggedIn') == 'true';
@@ -37,7 +38,7 @@
     }
     if (!noUsernameError && !noPasswordError) {
       try {
-        const response = await fetch('http://localhost:3011/auth/login', {
+        const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

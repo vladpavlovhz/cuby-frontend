@@ -4,6 +4,7 @@
   import NavBar from "./NavBar.svelte";
   import Scheduler from "./Scheduler.svelte";
   import Cookies from 'js-cookie';
+  import { PUBLIC_VITE_API_BASE_URL } from '$env/static/public';
   
   const getDateFromTimestamp = (timestamp) => {
     const date = new Date(timestamp);
@@ -14,7 +15,7 @@
   onMount(async () => {
     try {
       const cubySession = Cookies.get('cubySession');
-      const response = await fetch('http://localhost:3011/calendar', {
+      const response = await fetch(`${PUBLIC_VITE_API_BASE_URL}/calendar`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
